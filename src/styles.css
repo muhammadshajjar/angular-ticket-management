@@ -6,7 +6,7 @@
   box-sizing: border-box;
 }
 :root {
-  --primary-green: "#00A599";
+  --primary-green: #00a599;
 }
 body,
 h1,
