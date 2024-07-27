@@ -1,0 +1,13 @@
+<div class="ticket">
+  <div class="ticket__header">
+    <h3>{{ ticket.ticket_title }}</h3>
+    <span>{{ ticket.ticket_id }}</span>
+  </div>
+
+  <p>{{ ticket.ticket_desc }}</p>
+  <p class="ticket__date">{{ ticket.created_date | date : "fullDate" }}</p>
+  <div class="ticket__complete">
+    <button (click)="onComplete()" class="btn">Complete</button>
+  </div>
+
+</div>

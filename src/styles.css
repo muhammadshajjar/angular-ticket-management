@@ -25,3 +25,24 @@ body {
   margin: 0 auto;
   width: 96%;
 }
+.feedback {
+  text-align: center;
+  color: red;
+  margin-top: 40px;
+}
+
+.btn {
+  background-color: var(--primary-green);
+  padding: 8px 12px;
+  border: transparent;
+  color: white;
+  border-radius: 4px;
+}
+.btn:hover {
+  cursor: pointer;
+}
+.btn-cancel {
+  background-color: transparent;
+  border: 1px solid var(--primary-green);
+  color: black;
+}

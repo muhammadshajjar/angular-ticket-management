@@ -1,0 +1,22 @@
+<div class="tickets__container">
+  <div class="tickets__header">
+    <div>
+      <p>{{ selectedEmployee.employee_name }}</p>
+      <span>{{ selectedEmployee.employee_role }}</span>
+    </div>
+    <button (click)="onAssignNewTicket()" class="btn">Assign Ticket</button>
+  </div>
+  <div *ngIf="!isShowForm" class="tickets__cards">
+    <app-ticket *ngFor="let ticket of employeeTickets" [ticket]="ticket" />
+    <p *ngIf="!employeeTickets.length" class="feedback">
+      No Tickets for this employee please add
+    </p>
+  </div>
+  <div>
+    <app-new-ticket
+      *ngIf="isShowForm"
+      (status)="onGetCancelForm()"
+      [employeeId]="selectedEmployee.employee_id"
+    />
+  </div>
+</div>

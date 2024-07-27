@@ -3,9 +3,20 @@
   <section class="container employees">
     <h2>Employees</h2>
     <div class="employees__container">
-      @for(employee of employees; track employee.employee_id){
-      <app-employee (employeeId)="onGetSelectedEmployee($event)" [employee]="employee"></app-employee>
-      }
+      <app-employee
+        *ngFor="let employee of employees; trackBy: trackByIds"
+        (employeeId)="onGetSelectedEmployeeID($event)"
+        [employee]="employee"
+      ></app-employee>
     </div>
+  </section>
+  <section>
+    <app-tickets
+      *ngIf="selectedEmployee"
+      [selectedEmployee]="selectedEmployee"
+    />
+    <p *ngIf="!selectedEmployee" class="feedback">
+      Please Select any employee to see tickets
+    </p>
   </section>
 </main>
