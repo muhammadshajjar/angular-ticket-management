@@ -1,4 +1,8 @@
-<div class="card" (click)="onSelectEmployee()">
+<div
+  class="card"
+  [routerLink]="'employee/' + employee.employee_id"
+  routerLinkActive="router-link-active"
+>
   <div class="card__profile">
     <img src="employee-profile.png" alt="Employee Profile Avatar" />
   </div>

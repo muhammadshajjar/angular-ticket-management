@@ -26,3 +26,7 @@
   font-size: 14px;
   margin-top: 4px;
 }
+.card:hover,
+.router-link-active {
+  background-color: var(--primary-green);
+}

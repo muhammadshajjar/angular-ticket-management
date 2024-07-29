@@ -34,7 +34,11 @@
     <button type="submit" class="btn" [disabled]="ticketForm.invalid">
       Done
     </button>
-    <button type="button" (click)="onCancel()" class="btn btn-cancel">
+    <button
+      type="button"
+      [routerLink]="['/employee', employeeId, 'tickets']"
+      class="btn btn-cancel"
+    >
       Cancel
     </button>
   </div>

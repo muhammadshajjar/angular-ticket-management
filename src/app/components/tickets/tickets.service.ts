@@ -1,13 +1,12 @@
 import { Injectable } from '@angular/core';
 import { TICKETS, Ticket } from '../../data/tickets';
+import { tick } from '@angular/core/testing';
 
 @Injectable({
   providedIn: 'root',
 })
 export class TicketsService {
   tickets = TICKETS;
-
-  constructor() {}
 
   getEmployeeTickets(employee_id: string) {
     return this.tickets.filter((ticket) => ticket.employee_id === employee_id);

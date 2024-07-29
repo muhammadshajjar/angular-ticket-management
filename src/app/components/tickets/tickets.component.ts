@@ -1,9 +1,9 @@
 import { Component, Input, inject } from '@angular/core';
-import { Employee } from '../../data/employee';
 import { TicketComponent } from './ticket/ticket.component';
 import { TicketsService } from './tickets.service';
 import { NgFor, NgIf } from '@angular/common';
 import { NewTicketComponent } from './new-ticket/new-ticket.component';
+import { Ticket } from '../../data/tickets';
 
 @Component({
   selector: 'app-tickets',
@@ -14,19 +14,21 @@ import { NewTicketComponent } from './new-ticket/new-ticket.component';
 })
 export class TicketsComponent {
   private ticketService = inject(TicketsService);
-  @Input() selectedEmployee!: Employee;
 
-  isShowForm = false;
+  // private employeeTickets$?: Ticket[];
+  // @Input()
+  // set employeeId(id: string) {
+  //   console.log(id);
+  //   this.employeeTickets$ = this.ticketService.getEmployeeTickets(id);
+  // }
+  // get employeeTickets() {
+  //   return this.employeeTickets$;
+  // }
+
+  @Input() employeeId!: string;
 
   get employeeTickets() {
-    return this.ticketService.getEmployeeTickets(
-      this.selectedEmployee.employee_id
-    );
-  }
-  onAssignNewTicket() {
-    this.isShowForm = true;
-  }
-  onGetCancelForm() {
-    this.isShowForm = false;
+    console.log('This called!!');
+    return this.ticketService.getEmployeeTickets(this.employeeId);
   }
 }
