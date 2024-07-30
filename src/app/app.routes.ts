@@ -2,12 +2,20 @@ import { Routes } from '@angular/router';
 
 import { TicketsComponent } from './components/tickets/tickets.component';
 import { NewTicketComponent } from './components/tickets/new-ticket/new-ticket.component';
-import { EmployeeTicketsComponent } from './components/employee/employee-tickets/employee-tickets.component';
+import {
+  EmployeeTicketsComponent,
+  resolveEmployeeData,
+  resolveTitle,
+} from './components/employee/employee-tickets/employee-tickets.component';
 import { SelectEmployeeComponent } from './components/employee/select-employee/select-employee.component';
 import { PageNotFoundComponent } from './components/page-not-found/page-not-found.component';
 
 export const routes: Routes = [
-  { path: '', component: SelectEmployeeComponent },
+  {
+    path: '',
+    component: SelectEmployeeComponent,
+    title: 'Tickets | No Employee Selected',
+  },
   {
     path: 'employee/:employeeId',
     component: EmployeeTicketsComponent,
@@ -26,6 +34,10 @@ export const routes: Routes = [
         pathMatch: 'prefix',
       },
     ],
+    resolve: {
+      employeeData: resolveEmployeeData,
+    },
+    title: resolveTitle,
   },
   { path: '**', component: PageNotFoundComponent },
 ];
