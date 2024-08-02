@@ -1,4 +1,4 @@
-<form (ngSubmit)="onSubmit(ticketForm)" #ticketForm="ngForm">
+<form (ngSubmit)="onSubmit()">
   <label for="title">Title</label>
   <input
     type="text"
@@ -26,19 +26,19 @@
     required
     #desc="ngModel"
   />
-  <p [hidden]="desc.valid || title.untouched" class="form__feedback">
+  <p [hidden]="desc.valid || desc.untouched" class="form__feedback">
     Description is required
   </p>
 
   <div class="form__actions">
-    <button type="submit" class="btn" [disabled]="ticketForm.invalid">
+    <button
+      type="submit"
+      class="btn"
+      [disabled]="desc.invalid || title.invalid"
+    >
       Done
     </button>
-    <button
-      type="button"
-      [routerLink]="['/employee', employeeId, 'tickets']"
-      class="btn btn-cancel"
-    >
+    <button type="button" routerLink="../" class="btn btn-cancel">
       Cancel
     </button>
   </div>

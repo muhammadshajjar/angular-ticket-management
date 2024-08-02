@@ -1,7 +1,7 @@
 import { Routes } from '@angular/router';
 
-import { TicketsComponent } from './components/tickets/tickets.component';
-import { NewTicketComponent } from './components/tickets/new-ticket/new-ticket.component';
+import { TicketListComponent } from './components/ticket-list/ticket-list.component';
+import { NewTicketComponent } from './components/ticket-list/new-ticket/new-ticket.component';
 import {
   EmployeeTicketsComponent,
   resolveEmployeeData,
@@ -22,7 +22,7 @@ export const routes: Routes = [
     children: [
       {
         path: 'tickets',
-        component: TicketsComponent,
+        component: TicketListComponent,
       },
       {
         path: 'tickets/new',

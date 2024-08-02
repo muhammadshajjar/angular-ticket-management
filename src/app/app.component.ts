@@ -2,9 +2,9 @@ import { Component } from '@angular/core';
 import { HeaderComponent } from './components/header/header.component';
 import { EMPLOYEE_DATA, Employee } from './data/employee';
 import { EmployeeComponent } from './components/employee/employee.component';
-import { TicketsComponent } from './components/tickets/tickets.component';
 import { NgFor, NgIf } from '@angular/common';
 import { RouterOutlet } from '@angular/router';
+import { TicketListComponent } from './components/ticket-list/ticket-list.component';
 
 @Component({
   selector: 'app-root',
@@ -12,7 +12,7 @@ import { RouterOutlet } from '@angular/router';
   imports: [
     HeaderComponent,
     EmployeeComponent,
-    TicketsComponent,
+    TicketListComponent,
     NgFor,
     NgIf,
     RouterOutlet,

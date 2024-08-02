@@ -1,19 +1,12 @@
-import {
-  ChangeDetectionStrategy,
-  Component,
-  Input,
-  OnChanges,
-  SimpleChanges,
-} from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import {
   ActivatedRoute,
-  ActivatedRouteSnapshot,
   ResolveFn,
   RouterLink,
   RouterOutlet,
-  RouterStateSnapshot,
 } from '@angular/router';
 import { EMPLOYEE_DATA, Employee } from '../../../data/employee';
+import { Observable, Subscription, interval } from 'rxjs';
 
 @Component({
   selector: 'app-employee-tickets',
@@ -21,21 +14,20 @@ import { EMPLOYEE_DATA, Employee } from '../../../data/employee';
   imports: [RouterOutlet, RouterLink],
   templateUrl: './employee-tickets.component.html',
   styleUrl: './employee-tickets.component.css',
-  changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class EmployeeTicketsComponent {
-  // employees = EMPLOYEE_DATA;
-  // private _employeeData?: Employee;
+export class EmployeeTicketsComponent implements OnInit, OnDestroy {
+  constructor(private activatedRoutes: ActivatedRoute) {}
+  private subscription$!: Subscription;
+  employeeData!: Employee;
 
-  @Input() employeeData!: Employee;
-  // @Input()
-  // set employeeId(id: string) {
-  //   this._employeeData = this.employees.find((emp) => emp.employee_id === id);
-  // }
-
-  // get employeeData() {
-  //   return this._employeeData;
-  // }
+  ngOnInit(): void {
+    this.subscription$ = this.activatedRoutes.data.subscribe((data) => {
+      this.employeeData = data['employeeData'];
+    });
+  }
+  ngOnDestroy(): void {
+    this.subscription$.unsubscribe();
+  }
 }
 export const resolveEmployeeData: ResolveFn<Employee | undefined> = (
   activatedRoute,
@@ -56,4 +48,3 @@ export const resolveTitle: ResolveFn<string> = (
     return `${result.employee_name}'s Tickets`;
   } else return '';
 };
-

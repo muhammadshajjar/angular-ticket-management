@@ -2,7 +2,6 @@ import { Component, Input, inject } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { TicketsService } from '../tickets.service';
 
-import { NgForm } from '@angular/forms';
 import { Router, RouterLink } from '@angular/router';
 @Component({
   selector: 'app-new-ticket',
@@ -19,7 +18,7 @@ export class NewTicketComponent {
   enteredTitle = '';
   enteredDesc = '';
 
-  onSubmit(form: NgForm) {
+  onSubmit() {
     this.ticketService.addNewTicket(
       this.enteredTitle,
       this.enteredDesc,
