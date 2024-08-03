@@ -5,6 +5,8 @@ import { EmployeeComponent } from './components/employee/employee.component';
 import { NgFor, NgIf } from '@angular/common';
 import { RouterOutlet } from '@angular/router';
 import { TicketListComponent } from './components/ticket-list/ticket-list.component';
+import { TicketsService } from './components/ticket-list/tickets.service';
+import { TICKETS } from './data/tickets';
 
 @Component({
   selector: 'app-root',
@@ -22,7 +24,11 @@ import { TicketListComponent } from './components/ticket-list/ticket-list.compon
 })
 export class AppComponent {
   employees = EMPLOYEE_DATA;
+  constructor(private ticketService: TicketsService) {}
 
+  ngOnInit(): void {
+    this.ticketService.loadTickets(TICKETS);
+  }
   trackByIds(index: number, item: Employee): string {
     return item.employee_id;
   }

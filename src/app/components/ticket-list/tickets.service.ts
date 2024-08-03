@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { TICKETS } from '../../data/tickets';
+import { TICKETS, Ticket } from '../../data/tickets';
 import { BehaviorSubject, Subject, map } from 'rxjs';
 
 @Injectable({
@@ -7,10 +7,13 @@ import { BehaviorSubject, Subject, map } from 'rxjs';
 })
 export class TicketsService {
   // tickets = TICKETS;
-  private _tickets = new BehaviorSubject(TICKETS);
+  private _ticketsSource = new BehaviorSubject<Ticket[]>([]);
 
-  tickets$ = this._tickets.asObservable();
+  tickets$ = this._ticketsSource.asObservable();
 
+  loadTickets(tickets: Ticket[]) {
+    this._ticketsSource.next(tickets);
+  }
   getEmployeeTickets(employee_id: string) {
     return this.tickets$.pipe(
       map((tickets) =>
@@ -27,12 +30,12 @@ export class TicketsService {
       created_date: new Date().toISOString(),
       employee_id,
     };
-    this._tickets.next([newTicket, ...this._tickets.value]);
+    this._ticketsSource.next([newTicket, ...this._ticketsSource.value]);
   }
 
   removeTicket(ticket_id: string) {
-    this._tickets.next(
-      this._tickets.value.filter((tick) => tick.ticket_id !== ticket_id)
+    this._ticketsSource.next(
+      this._ticketsSource.value.filter((tick) => tick.ticket_id !== ticket_id)
     );
   }
 }

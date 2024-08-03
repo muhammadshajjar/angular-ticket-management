@@ -6,7 +6,7 @@ import {
   RouterOutlet,
 } from '@angular/router';
 import { EMPLOYEE_DATA, Employee } from '../../../data/employee';
-import { Observable, Subscription, interval } from 'rxjs';
+import { Observable, Subject, Subscription, interval, takeUntil } from 'rxjs';
 
 @Component({
   selector: 'app-employee-tickets',
@@ -18,15 +18,28 @@ import { Observable, Subscription, interval } from 'rxjs';
 export class EmployeeTicketsComponent implements OnInit, OnDestroy {
   constructor(private activatedRoutes: ActivatedRoute) {}
   private subscription$!: Subscription;
+  private destroy$ = new Subject<void>();
   employeeData!: Employee;
 
+  // ngOnInit(): void {
+  //   this.subscription$ = this.activatedRoutes.data.subscribe((data) => {
+  //     this.employeeData = data['employeeData'];
+  //   });
+  // }
+  // ngOnDestroy(): void {
+  //   this.subscription$.unsubscribe();
+  // }
   ngOnInit(): void {
-    this.subscription$ = this.activatedRoutes.data.subscribe((data) => {
-      this.employeeData = data['employeeData'];
-    });
+    this.activatedRoutes.data
+      .pipe(takeUntil(this.destroy$))
+      .subscribe((data) => {
+        this.employeeData = data['employeeData'];
+      });
   }
+
   ngOnDestroy(): void {
-    this.subscription$.unsubscribe();
+    this.destroy$.next();
+    this.destroy$.complete();
   }
 }
 export const resolveEmployeeData: ResolveFn<Employee | undefined> = (
