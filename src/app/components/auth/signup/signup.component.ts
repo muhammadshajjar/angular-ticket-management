@@ -6,7 +6,7 @@ import {
   ReactiveFormsModule,
   Validators,
 } from '@angular/forms';
-import { Router, RouterLink } from '@angular/router';
+import { CanDeactivateFn, Router, RouterLink } from '@angular/router';
 import { AuthService } from '../../../services/auth.service';
 
 @Component({
@@ -18,6 +18,7 @@ import { AuthService } from '../../../services/auth.service';
 })
 export class SignupComponent {
   employeeForm!: FormGroup;
+  formSubmitted = false;
 
   constructor(
     private formBuilder: FormBuilder,
@@ -36,6 +37,7 @@ export class SignupComponent {
 
   onFormSubmit() {
     if (this.employeeForm.valid) {
+      this.formSubmitted = true;
       const value = this.employeeForm.value;
       const employeeData = {
         employee_id: crypto.randomUUID(),
@@ -51,3 +53,13 @@ export class SignupComponent {
     }
   }
 }
+
+export const pendingChangesGuard: CanDeactivateFn<SignupComponent> = (
+  component
+) => {
+  const { name, role, email, password } = component.employeeForm.value;
+
+  if ((name || role || email || password) && !component.formSubmitted) {
+    return confirm('Do you want to leave the page? Changes will be discarded!');
+  } else return true;
+};

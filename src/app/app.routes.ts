@@ -9,7 +9,10 @@ import {
 } from './components/employee/employee-tickets/employee-tickets.component';
 import { PageNotFoundComponent } from './components/page-not-found/page-not-found.component';
 import { LoginComponent } from './components/auth/login/login.component';
-import { SignupComponent } from './components/auth/signup/signup.component';
+import {
+  SignupComponent,
+  pendingChangesGuard,
+} from './components/auth/signup/signup.component';
 import { HomeComponent } from './components/home/home.component';
 import { authGuard } from './guards/auth-guard.guard';
 
@@ -20,6 +23,7 @@ export const routes: Routes = [
   },
   {
     path: 'signup',
+    canDeactivate: [pendingChangesGuard],
     component: SignupComponent,
   },
   {
