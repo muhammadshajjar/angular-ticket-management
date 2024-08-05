@@ -1,0 +1,47 @@
+<form (ngSubmit)="onSubmit()">
+  <label for="username">Email</label>
+  <input
+    type="email"
+    class="form-control"
+    id="username"
+    required
+    [(ngModel)]="enteredEmail"
+    name="username"
+    required
+    #email="ngModel"
+  />
+  <p [hidden]="email.valid || email.untouched" class="form__feedback">
+    Email is required
+  </p>
+
+  <label for="password">Password</label>
+
+  <input
+    type="password"
+    class="form-control"
+    id="password"
+    required
+    [(ngModel)]="enteredPassword"
+    name="password"
+    required
+    #password="ngModel"
+  />
+  <p [hidden]="password.valid || password.untouched" class="form__feedback">
+    Password is required
+  </p>
+
+  <p>
+    Don't have an account ?
+    <a routerLink="signup">Singup</a>
+  </p>
+  <div class="form__actions">
+    <button
+      type="submit"
+      class="btn"
+      [disabled]="password.invalid || email.invalid"
+    >
+      Done
+    </button>
+  </div>
+  <p>{{ feedback }}</p>
+</form>

@@ -1,14 +1,5 @@
 <main>
   <app-header></app-header>
-  <section class="container employees">
-    <h2>Employees</h2>
-    <div class="employees__container">
-      <app-employee
-        *ngFor="let employee of employees; trackBy: trackByIds"
-        [employee]="employee"
-      ></app-employee>
-    </div>
-  </section>
   <section>
     <router-outlet />
   </section>

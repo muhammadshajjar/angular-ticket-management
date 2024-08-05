@@ -1,6 +1,6 @@
 import { Component, Input, inject } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { TicketsService } from '../tickets.service';
+import { TicketsService } from '../../../services/tickets.service';
 
 import { Router, RouterLink } from '@angular/router';
 @Component({
@@ -25,6 +25,6 @@ export class NewTicketComponent {
       this.employeeId
     );
 
-    this.router.navigate(['/employee', this.employeeId, 'tickets']);
+    this.router.navigate(['home/employee', this.employeeId, 'tickets']);
   }
 }

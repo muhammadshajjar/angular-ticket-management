@@ -1,12 +1,10 @@
 import { Component } from '@angular/core';
 import { HeaderComponent } from './components/header/header.component';
-import { EMPLOYEE_DATA, Employee } from './data/employee';
 import { EmployeeComponent } from './components/employee/employee.component';
 import { NgFor, NgIf } from '@angular/common';
-import { RouterOutlet } from '@angular/router';
+import { Router, RouterOutlet } from '@angular/router';
 import { TicketListComponent } from './components/ticket-list/ticket-list.component';
-import { TicketsService } from './components/ticket-list/tickets.service';
-import { TICKETS } from './data/tickets';
+import { AuthService } from './services/auth.service';
 
 @Component({
   selector: 'app-root',
@@ -23,14 +21,13 @@ import { TICKETS } from './data/tickets';
   styleUrl: './app.component.css',
 })
 export class AppComponent {
-  employees = EMPLOYEE_DATA;
-  constructor(private ticketService: TicketsService) {}
+  title = 'ticket-management';
+
+  constructor(private router: Router, private authService: AuthService) {}
 
   ngOnInit(): void {
-    this.ticketService.loadTickets(TICKETS);
+    if (this.authService.isAuthenticated()) {
+      this.router.navigateByUrl('/home');
+    }
   }
-  trackByIds(index: number, item: Employee): string {
-    return item.employee_id;
-  }
-  title = 'ticket-management';
 }

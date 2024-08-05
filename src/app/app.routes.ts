@@ -7,37 +7,52 @@ import {
   resolveEmployeeData,
   resolveTitle,
 } from './components/employee/employee-tickets/employee-tickets.component';
-import { SelectEmployeeComponent } from './components/employee/select-employee/select-employee.component';
 import { PageNotFoundComponent } from './components/page-not-found/page-not-found.component';
+import { LoginComponent } from './components/auth/login/login.component';
+import { SignupComponent } from './components/auth/signup/signup.component';
+import { HomeComponent } from './components/home/home.component';
+import { authGuard } from './guards/auth-guard.guard';
 
 export const routes: Routes = [
   {
     path: '',
-    component: SelectEmployeeComponent,
-    title: 'Tickets | No Employee Selected',
+    component: LoginComponent,
   },
   {
-    path: 'employee/:employeeId',
-    component: EmployeeTicketsComponent,
+    path: 'signup',
+    component: SignupComponent,
+  },
+  {
+    path: 'home',
+    component: HomeComponent,
+    title: 'Tickets | No Employee Selected',
+    canActivate: [authGuard],
     children: [
       {
-        path: 'tickets',
-        component: TicketListComponent,
-      },
-      {
-        path: 'tickets/new',
-        component: NewTicketComponent,
-      },
-      {
-        path: '',
-        redirectTo: 'tickets',
-        pathMatch: 'prefix',
+        path: 'employee/:employeeId',
+        component: EmployeeTicketsComponent,
+        children: [
+          {
+            path: 'tickets',
+            component: TicketListComponent,
+          },
+          {
+            path: 'tickets/new',
+            component: NewTicketComponent,
+          },
+          {
+            path: '',
+            redirectTo: 'tickets',
+            pathMatch: 'prefix',
+          },
+        ],
+        resolve: {
+          employeeData: resolveEmployeeData,
+        },
+        title: resolveTitle,
       },
     ],
-    resolve: {
-      employeeData: resolveEmployeeData,
-    },
-    title: resolveTitle,
   },
+
   { path: '**', component: PageNotFoundComponent },
 ];

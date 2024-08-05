@@ -1,11 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { TicketComponent } from './ticket/ticket.component';
-import { TicketsService } from './tickets.service';
+import { TicketsService } from '../../services/tickets.service';
 import { AsyncPipe, NgFor, NgIf } from '@angular/common';
 
-import { Ticket } from '../../data/tickets';
 import { ActivatedRoute } from '@angular/router';
-import { Observable, Subscription, switchMap } from 'rxjs';
+import { Observable, switchMap } from 'rxjs';
+import { Ticket } from '../../models/interfaces/ticket';
 
 @Component({
   selector: 'app-tickets',

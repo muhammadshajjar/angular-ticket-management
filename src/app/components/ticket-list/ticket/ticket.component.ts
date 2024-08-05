@@ -1,6 +1,6 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
-import { Ticket } from '../../../data/tickets';
 import { DatePipe } from '@angular/common';
+import { Ticket } from '../../../models/interfaces/ticket';
 
 @Component({
   selector: 'app-ticket',

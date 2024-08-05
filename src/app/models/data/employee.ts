@@ -1,45 +1,50 @@
-export interface Employee {
-  employee_id: string;
-  employee_name: string;
-  employee_role: string;
-  ticket_id: string;
-}
-
 export const EMPLOYEE_DATA = [
   {
     employee_id: '1',
     employee_name: 'shajjar',
     employee_role: 'software engineer',
     ticket_id: '1',
+    email: 'shajjar@gmail.com',
+    password: '123456',
   },
   {
     employee_id: '2',
     employee_name: 'ali',
     employee_role: 'software engineer',
     ticket_id: '2',
+    email: 'ali@gmail.com',
+    password: '123456',
   },
   {
     employee_id: '3',
     employee_name: 'Abdullah',
     employee_role: 'software engineer',
     ticket_id: '3',
+    email: 'abdullah@gmail.com',
+    password: '123456',
   },
   {
     employee_id: '4',
     employee_name: 'Salman',
     employee_role: 'software engineer',
     ticket_id: '4',
+    email: 'salman@gmail.com',
+    password: '123456',
   },
   {
     employee_id: '5',
     employee_name: 'ethisham',
     employee_role: 'software engineer',
     ticket_id: '5',
+    email: 'ethisham@gmail.com',
+    password: '123456',
   },
   {
     employee_id: '6',
     employee_name: 'usman',
     employee_role: 'software engineer',
     ticket_id: '6',
+    email: 'usman@gmail.com',
+    password: '123456',
   },
 ];

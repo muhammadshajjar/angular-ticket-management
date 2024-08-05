@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
-import { TICKETS, Ticket } from '../../data/tickets';
-import { BehaviorSubject, Subject, map } from 'rxjs';
+import { BehaviorSubject, map } from 'rxjs';
+import { Ticket } from '../models/interfaces/ticket';
 
 @Injectable({
   providedIn: 'root',

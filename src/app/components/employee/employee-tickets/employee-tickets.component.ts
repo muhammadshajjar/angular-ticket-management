@@ -5,8 +5,9 @@ import {
   RouterLink,
   RouterOutlet,
 } from '@angular/router';
-import { EMPLOYEE_DATA, Employee } from '../../../data/employee';
-import { Observable, Subject, Subscription, interval, takeUntil } from 'rxjs';
+import { EMPLOYEE_DATA } from '../../../models/data/employee';
+import { Observable, Subject, Subscription, takeUntil } from 'rxjs';
+import { Employee } from '../../../models/interfaces/employee';
 
 @Component({
   selector: 'app-employee-tickets',
