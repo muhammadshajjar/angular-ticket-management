@@ -1,11 +1,3 @@
-export interface Ticket {
-  ticket_id: string;
-  ticket_title: string;
-  ticket_desc: string;
-  created_date: string;
-  employee_id: string;
-}
-
 export const TICKETS = [
   {
     ticket_id: '4f6e1b8e-e8f9-4cf0-afd5-a031032a2257',

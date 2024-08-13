@@ -1,0 +1,15 @@
+<section class="container employees">
+  <div class="employees__header">
+    <h2>Employees</h2>
+    <button class="btn" (click)="onLogout()">Logout</button>
+  </div>
+  <div class="employees__container">
+    <app-employee
+      *ngFor="let employee of employees; trackBy: trackByIds"
+      [employee]="employee"
+    ></app-employee>
+  </div>
+</section>
+<section>
+  <router-outlet></router-outlet>
+</section>

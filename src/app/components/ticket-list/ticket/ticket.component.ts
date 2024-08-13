@@ -1,7 +1,6 @@
-import { Component, Input, inject } from '@angular/core';
-import { Ticket } from '../../../data/tickets';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { DatePipe } from '@angular/common';
-import { TicketsService } from '../tickets.service';
+import { Ticket } from '../../../models/interfaces/ticket';
 
 @Component({
   selector: 'app-ticket',
@@ -11,10 +10,10 @@ import { TicketsService } from '../tickets.service';
   styleUrl: './ticket.component.css',
 })
 export class TicketComponent {
-  private ticketService = inject(TicketsService);
   @Input() ticket!: Ticket;
+  @Output() complete = new EventEmitter();
 
   onComplete() {
-    this.ticketService.removeTicket(this.ticket.ticket_id);
+    this.complete.emit(this.ticket.ticket_id);
   }
 }

@@ -1,40 +1,30 @@
-import {
-  Component,
-  ElementRef,
-  EventEmitter,
-  Input,
-  Output,
-  inject,
-
-} from '@angular/core';
+import { Component, Input, inject } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { TicketsService } from '../tickets.service';
+import { TicketsService } from '../../../services/tickets.service';
 
-import { NgForm } from '@angular/forms';
+import { Router, RouterLink } from '@angular/router';
 @Component({
   selector: 'app-new-ticket',
   standalone: true,
-  imports: [FormsModule],
+  imports: [FormsModule, RouterLink],
   templateUrl: './new-ticket.component.html',
   styleUrl: './new-ticket.component.css',
 })
 export class NewTicketComponent {
-  @Output() status = new EventEmitter();
   @Input() employeeId!: string;
+  private router = inject(Router);
   private ticketService = inject(TicketsService);
 
   enteredTitle = '';
   enteredDesc = '';
-  onCancel() {
-    this.status.emit();
-  }
-  onSubmit(form:NgForm) {
-    console.log(form)
+
+  onSubmit() {
     this.ticketService.addNewTicket(
       this.enteredTitle,
       this.enteredDesc,
       this.employeeId
     );
-    this.status.emit();
+
+    this.router.navigate(['home/employee', this.employeeId, 'tickets']);
   }
 }

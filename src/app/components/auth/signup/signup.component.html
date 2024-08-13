@@ -1,0 +1,69 @@
+<form [formGroup]="employeeForm" (ngSubmit)="onFormSubmit()">
+  <div>
+    <label for="name">Name</label>
+    <input type="text" id="name" name="name" formControlName="name" />
+    <p
+      *ngIf="
+        employeeForm.get('name')?.invalid && employeeForm.get('name')?.touched
+      "
+      class="form__feedback"
+    >
+      Please enter name.
+    </p>
+  </div>
+  <div>
+    <label for="role">Role</label>
+    <input type="text" id="role" name="role" formControlName="role" />
+
+    <p
+      *ngIf="
+        employeeForm.get('role')?.invalid && employeeForm.get('role')?.touched
+      "
+      class="form__feedback"
+    >
+      Please enter role.
+    </p>
+  </div>
+
+  <div>
+    <label for="email">Email</label>
+    <input type="email" id="email" name="email" formControlName="email" />
+
+    <p
+      *ngIf="
+        employeeForm.get('email')?.invalid && employeeForm.get('email')?.touched
+      "
+      class="form__feedback"
+    >
+      Please enter a valid email address.
+    </p>
+  </div>
+  <div>
+    <label for="password">Password</label>
+    <input
+      type="password"
+      id="password"
+      name="password"
+      formControlName="password"
+    />
+
+    <p
+      *ngIf="
+        employeeForm.get('password')?.invalid &&
+        employeeForm.get('password')?.touched
+      "
+      class="form__feedback"
+    >
+      Password length should be atleast 6 charaters.
+    </p>
+  </div>
+  <p>
+    Already have an account ?
+    <a routerLink="">Login</a>
+  </p>
+  <div class="form__actions">
+    <button class="btn" type="submit" [disabled]="!employeeForm.valid">
+      SignUp
+    </button>
+  </div>
+</form>

@@ -1,0 +1,10 @@
+<div class="tickets__cards" *ngIf="employeeTickets$ | async as tickets">
+  <app-ticket
+    *ngFor="let ticket of tickets"
+    [ticket]="ticket"
+    (complete)="onComplete($event)"
+  />
+  <p *ngIf="!tickets.length" class="feedback">
+    No Tickets for this employee please add
+  </p>
+</div>

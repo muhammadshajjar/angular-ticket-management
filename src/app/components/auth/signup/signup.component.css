@@ -1,0 +1,39 @@
+form {
+  margin: 80px auto;
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  background-color: white;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  max-width: 500px;
+}
+form div {
+  display: flex;
+  flex-direction: column;
+}
+form input {
+  padding: 7px;
+  border-radius: 4px;
+  border: 1px solid #ccc;
+}
+.form__actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 4px;
+}
+
+.form__feedback {
+  color: red;
+  font-size: 14px;
+  margin-top: 3px;
+}
+
+.form__actions button:disabled {
+  cursor: not-allowed;
+}
+.ng-valid[required],
+.ng-valid.required {
+  border-left: 5px solid #42a948;
+}
